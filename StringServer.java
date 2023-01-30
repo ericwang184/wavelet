@@ -6,6 +6,7 @@ class Handler implements URLHandler {
 
     String strArray[] = new String[0];
     public String handleRequest(URI url) {
+        String returnStr = "";
         if (url.getPath().equals("/add-message")) {
             String[] parameters = url.getQuery().split("=");
             if (parameters[0].equals("s")) {
@@ -16,10 +17,13 @@ class Handler implements URLHandler {
                 newStrArray[strArray.length] = parameters[1];
                 strArray = newStrArray;
             }
-           
         } 
-        return strArray.toString();
+        for (int j = 0; j < strArray.length; j++){
+            returnStr = returnStr + " \n" + strArray[j];
+        }
+        return returnStr;
     }
+    
 }
 
 class StringServer {
